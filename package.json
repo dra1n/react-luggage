@@ -1,0 +1,28 @@
+{
+  "name": "react-luggage",
+  "version": "1.0.0",
+  "description": "React component for luggage.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dra1n/react-luggage.git"
+  },
+  "keywords": [
+    "react",
+    "luggage",
+    "dropbox",
+    "storage"
+  ],
+  "author": "dra1n",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dra1n/react-luggage/issues"
+  },
+  "homepage": "https://github.com/dra1n/react-luggage#readme",
+  "peerDependencies": {
+    "react": "^15"
+  }
+}
