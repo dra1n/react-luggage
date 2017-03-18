@@ -1,5 +1,8 @@
 export default function createContext(collectionName, dropboxBackend, credentials) {
   return {
-    collectionName: collectionName
+    collectionName: collectionName,
+    backend: dropboxBackend,
+    credentials: credentials,
+    collection: null
   }
 }

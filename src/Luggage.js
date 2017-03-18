@@ -1,4 +1,5 @@
 import { Component, PropTypes } from 'react'
+import { DropboxBackend } from 'luggage'
 import createContext from './createContext'
 
 class Luggage extends Component {
@@ -7,7 +8,13 @@ class Luggage extends Component {
     children: PropTypes.oneOfType([
       PropTypes.node,
       PropTypes.arrayOf(PropTypes.node)
-    ])
+    ]).isRequired,
+    backend: PropTypes.object,
+    credentials: PropTypes.object
+  }
+
+  static defaultProps = {
+    backend: DropboxBackend
   }
 
   static childContextTypes = {
@@ -15,8 +22,10 @@ class Luggage extends Component {
   }
 
   getChildContext() {
+    const { collection, backend, credentials } = this.props
+
     return {
-      luggage: createContext(this.props.collection)
+      luggage: createContext(collection, backend, credentials)
     }
   }
 
