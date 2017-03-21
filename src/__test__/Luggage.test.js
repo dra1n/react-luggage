@@ -1,6 +1,5 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { backend } from './testUtils'
 import Luggage from '../Luggage'
 
 describe('Luggage', () => {
@@ -38,15 +37,12 @@ describe('Luggage', () => {
       renderer.create(
         <Luggage
           collection='todos'
-          backend={backend}
           credentials={credentials}
         >
           <ContextChecker />
         </Luggage>
       )
 
-      expect(rootContext.luggage.backend).toEqual(backend)
-      expect(rootContext.luggage.collection).toBeNull()
       expect(rootContext.luggage.credentials).toEqual(credentials)
     })
   })
