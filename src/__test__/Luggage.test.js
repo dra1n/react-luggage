@@ -32,7 +32,9 @@ describe('Luggage', () => {
     })
 
     it('sets dropbox credentials', () => {
-      const credentials = {}
+      const credentials = {
+        API_KEY: 'somekeyhere'
+      }
 
       renderer.create(
         <Luggage

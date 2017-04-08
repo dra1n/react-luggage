@@ -2,8 +2,10 @@ class SessionManager {
   static instance
 
   constructor() {
-    if (instance) {
-      return instance
+    if (SessionManager.instance) {
+      return SessionManager.instance
+    } else {
+      SessionManager.instance = this
     }
   }
 }

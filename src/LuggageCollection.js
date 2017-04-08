@@ -5,26 +5,37 @@ import SessionManager from './SessionManager'
 class LuggageCollection extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    sessionManager: PropTypes.object
+    SessionManager: PropTypes.func,
+    Backend: PropTypes.func
   }
 
   static defaultProps = {
-    sessionManager: new SessionManager(this.context.credentials)
+    SessionManager: SessionManager,
+    Backend: DropboxBackend
   }
 
   static contextTypes = {
     luggage: PropTypes.shape({
       credentials: PropTypes.object,
-      backend: PropTypes.object
+      collectionName: PropTypes.string
     })
   }
 
   componentDidMount() {
-    const { sessionManager } = this.context
+    const { SessionManager, Backend } = this.props
+    const { luggage } = this.context
+
+    const sessionManager = new SessionManager(luggage.credentials)
     const token = sessionManager.getToken()
 
     if (token) {
-      let coll
+      let store = new Luggage(new Backend(token))
+      let collection = store.collection(luggage.collectionName)
+
+      this.setState({
+        collection,
+        token
+      })
     }
   }
 
@@ -34,4 +45,3 @@ class LuggageCollection extends Component {
 }
 
 export default LuggageCollection
-
