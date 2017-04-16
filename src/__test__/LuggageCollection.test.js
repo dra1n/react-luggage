@@ -1,14 +1,16 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import renderer from 'react-test-renderer'
 import { DummyBackend } from 'luggage'
 import { SessionManager, WithContext } from './testUtils'
 import LuggageCollection from '../LuggageCollection'
 
 describe('LuggageCollection', () => {
-  let propsChecker
+  const AsyncPropsChecker = props => {
+    if (props.ready(props)) {
+      props.check(props)
+    }
 
-  const PropsChecker = props => {
-    propsChecker = props
     return null
   }
 
@@ -24,29 +26,32 @@ describe('LuggageCollection', () => {
     })
   })
 
-  afterEach(() => {
-    propsChecker = null
-  })
-
   describe('token exists', () => {
     beforeEach(() => {
       SessionManager.token = 'sometoken'
     })
 
-    it('provides a store and a token to children', () => {
+    it('provides a store and a token to children', done => {
+      const ready = props => (
+        props.token
+      )
+
+      const check = props => {
+        expect(props.collection).toBeDefined()
+        expect(props.token).toEqual('sometoken')
+        done()
+      }
+
       renderer.create(
         <Luggage>
           <LuggageCollection
             SessionManager={SessionManager}
             Backend={DummyBackend}
           >
-            <PropsChecker />
+            <AsyncPropsChecker ready={ready} check={check} />
           </LuggageCollection>
         </Luggage>
       )
-
-      expect(propsChecker.collection).toBeDefined()
-      expect(propsChecker.token).toEqual('sometoken')
     })
   })
 })

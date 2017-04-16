@@ -8,7 +8,8 @@
     "test-watch": "jest --watch",
     "build": "babel --source-maps inline --optional runtime -d lib/ src/",
     "watch": "babel --watch --source-maps inline --optional runtime -d lib/ src/",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
+    "prepublish": "npm run build && npm test",
     "lint": "eslint src"
   },
   "repository": {
@@ -40,11 +41,17 @@
     "eslint": "^3.18",
     "eslint-plugin-react": "^6.10",
     "jest": "^19.0.2",
+    "luggage": "luggagejs/luggage#2.0.6",
+    "react": "^15",
     "react-test-renderer": "^15.4.2",
-    "luggage": "dra1n/luggagejs#2.0.0"
+    "webpack": "^2"
   },
   "peerDependencies": {
     "react": "^15",
-    "luggage": "dra1n/luggagejs#2.0.0"
+    "luggage": "luggagejs/luggage#2.0.6"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.8",
+    "dropbox": "^2.5.2"
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import renderer from 'react-test-renderer'
 import Luggage from '../Luggage'
 
@@ -12,8 +13,8 @@ describe('Luggage', () => {
     }
 
     ContextChecker.contextTypes = {
-      luggage: React.PropTypes.shape({
-        collectionName: React.PropTypes.string
+      luggage: PropTypes.shape({
+        collectionName: PropTypes.string
       })
     }
 

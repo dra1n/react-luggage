@@ -9,11 +9,15 @@ import { Luggage, withCollection } from 'react-luggage'
 
 class App extends React.Component {
   render() {
+    const credentials = {
+      API_KEY: 'someapikey'
+    }
+
     return (
       <Luggage
         collection='recipes'
+        creadentials={credentials}
         redirectUrl='/app'
-        dropboxAppKey='9sdf78dfthkwt'
       >
         <RecipesCollection />
       </Luggage>

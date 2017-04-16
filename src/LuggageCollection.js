@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Luggage, { DropboxBackend } from 'luggage'
 import SessionManager from './SessionManager'
 
@@ -17,6 +18,7 @@ class LuggageCollection extends Component {
   static contextTypes = {
     luggage: PropTypes.shape({
       credentials: PropTypes.object,
+      redirectUrl: PropTypes.string,
       collectionName: PropTypes.string
     })
   }
@@ -24,18 +26,24 @@ class LuggageCollection extends Component {
   componentDidMount() {
     const { SessionManager, Backend } = this.props
     const { luggage } = this.context
+    const { credentials, collectionName, redirectUrl } = luggage
 
-    const sessionManager = new SessionManager(luggage.credentials)
+    const sessionManager = new SessionManager(credentials, redirectUrl)
     const token = sessionManager.getToken()
 
     if (token) {
       let store = new Luggage(new Backend(token))
-      let collection = store.collection(luggage.collectionName)
+      let collection = store.collection(collectionName)
 
-      this.setState({
-        collection,
-        token
-      })
+      collection
+        .read()
+        .then(c => {
+          this.setState({
+            collection,
+            token,
+            [collectionName]: c
+          })
+        })
     }
   }
 
