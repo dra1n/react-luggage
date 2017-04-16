@@ -47,7 +47,3 @@ class Recipes extends React.Component {
 
 const RecipesCollection = withCollection(Recipes)
 ```
-
-You can explicetely map collection to props
-
-You can filter collection before puting it into props
