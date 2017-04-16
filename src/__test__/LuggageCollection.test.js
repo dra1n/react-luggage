@@ -31,13 +31,14 @@ describe('LuggageCollection', () => {
       SessionManager.token = 'sometoken'
     })
 
-    it('provides a store and a token to children', done => {
+    it('provides a store, collection data, and a token to children', done => {
       const ready = props => (
         props.token
       )
 
       const check = props => {
         expect(props.collection).toBeDefined()
+        expect(props.todos).toBeDefined()
         expect(props.token).toEqual('sometoken')
         done()
       }
