@@ -1,10 +1,8 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
-import createContext from './createContext'
 
 class Luggage extends Component {
   static propTypes = {
-    collection: PropTypes.string.isRequired,
     children: PropTypes.oneOfType([
       PropTypes.node,
       PropTypes.arrayOf(PropTypes.node)
@@ -17,10 +15,10 @@ class Luggage extends Component {
   }
 
   getChildContext() {
-    const { collection, credentials } = this.props
+    const { credentials } = this.props
 
     return {
-      luggage: createContext(collection, credentials)
+      luggage: { credentials }
     }
   }
 

@@ -15,7 +15,6 @@ class App extends React.Component {
 
     return (
       <Luggage
-        collection='recipes'
         creadentials={credentials}
         redirectUrl='/app'
       >
@@ -45,5 +44,5 @@ class Recipes extends React.Component {
   }
 }
 
-const RecipesCollection = withCollection(Recipes)
+const RecipesCollection = withCollection('recipes')(Recipes)
 ```

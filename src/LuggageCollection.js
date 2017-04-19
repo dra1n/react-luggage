@@ -6,6 +6,7 @@ import SessionManager from './SessionManager'
 class LuggageCollection extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
+    name: PropTypes.string.isRequired,
     SessionManager: PropTypes.func,
     Backend: PropTypes.func
   }
@@ -18,22 +19,21 @@ class LuggageCollection extends Component {
   static contextTypes = {
     luggage: PropTypes.shape({
       credentials: PropTypes.object,
-      redirectUrl: PropTypes.string,
-      collectionName: PropTypes.string
+      redirectUrl: PropTypes.string
     })
   }
 
   componentDidMount() {
-    const { SessionManager, Backend } = this.props
+    const { SessionManager, Backend, name } = this.props
     const { luggage } = this.context
-    const { credentials, collectionName, redirectUrl } = luggage
+    const { credentials, redirectUrl } = luggage
 
     const sessionManager = new SessionManager(credentials, redirectUrl)
     const token = sessionManager.getToken()
 
     if (token) {
       let store = new Luggage(new Backend(token))
-      let collection = store.collection(collectionName)
+      let collection = store.collection(name)
 
       collection
         .read()
@@ -41,7 +41,7 @@ class LuggageCollection extends Component {
           this.setState({
             collection,
             token,
-            [collectionName]: c
+            [name]: c
           })
         })
     }

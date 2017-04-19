@@ -23,13 +23,15 @@ describe('Luggage', () => {
     })
 
     it('creates context', () => {
+      const credentials = { API_KEY: 'someapikey' }
+
       renderer.create(
-        <Luggage collection='todos'>
+        <Luggage credentials={credentials}>
           <ContextChecker />
         </Luggage>
       )
 
-      expect(rootContext.luggage.collectionName).toEqual('todos')
+      expect(rootContext.luggage.credentials).toEqual(credentials)
     })
 
     it('sets dropbox credentials', () => {

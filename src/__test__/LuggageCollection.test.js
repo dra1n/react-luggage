@@ -16,13 +16,11 @@ describe('LuggageCollection', () => {
 
   const Luggage = WithContext({
     luggage: {
-      credentials: { API_KEY: 'someapikey' },
-      collectionName: 'todos'
+      credentials: { API_KEY: 'someapikey' }
     }
   }, {
     luggage: PropTypes.shape({
-      credentials: PropTypes.object,
-      collectionName: PropTypes.string
+      credentials: PropTypes.object
     })
   })
 
@@ -48,6 +46,7 @@ describe('LuggageCollection', () => {
           <LuggageCollection
             SessionManager={SessionManager}
             Backend={DummyBackend}
+            name='todos'
           >
             <AsyncPropsChecker ready={ready} check={check} />
           </LuggageCollection>
