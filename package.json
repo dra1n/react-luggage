@@ -41,14 +41,14 @@
     "eslint": "^3.18",
     "eslint-plugin-react": "^6.10",
     "jest": "^19.0.2",
-    "luggage": "luggagejs/luggage#2.0.6",
+    "luggage": "luggagejs/luggage#2.1.1",
     "react": "^15",
     "react-test-renderer": "^15.4.2",
     "webpack": "^2"
   },
   "peerDependencies": {
     "react": "^15",
-    "luggage": "luggagejs/luggage#2.0.6"
+    "luggage": "luggagejs/luggage#2.1.1"
   },
   "dependencies": {
     "prop-types": "^15.5.8",

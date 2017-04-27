@@ -23,28 +23,34 @@ class LuggageCollection extends Component {
     })
   }
 
-  componentDidMount() {
-    const { SessionManager, Backend, name } = this.props
-    const { luggage } = this.context
+  constructor(props, context) {
+    super(props, context)
+
+    const { SessionManager, Backend, name } = props
+    const { luggage } = context
     const { credentials, redirectUrl } = luggage
 
     const sessionManager = new SessionManager(credentials, redirectUrl)
     const token = sessionManager.getToken()
 
-    if (token) {
-      let store = new Luggage(new Backend(token))
-      let collection = store.collection(name)
+    const store = new Luggage(new Backend(token))
+    const collection = store.collection(name)
 
-      collection
-        .read()
-        .then(c => {
-          this.setState({
-            collection,
-            token,
-            [name]: c
-          })
-        })
+    this.state = {
+      collection,
+      token,
+      [name]: []
     }
+
+    collection.on('data', data => {
+      this.setState({
+        [name]: data
+      })
+    })
+  }
+
+  componentDidMount() {
+    this.state.collection.read()
   }
 
   render() {
