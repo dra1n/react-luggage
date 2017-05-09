@@ -9,13 +9,9 @@ import { Luggage, withCollection } from 'react-luggage'
 
 class App extends React.Component {
   render() {
-    const credentials = {
-      API_KEY: 'someapikey'
-    }
-
     return (
       <Luggage
-        creadentials={credentials}
+        apiKey='someapikey'
         redirectUrl='/app'
       >
         <RecipesCollection />

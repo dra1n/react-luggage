@@ -1,4 +1,5 @@
 import Luggage, { DummyBackend } from 'luggage'
+import PropTypes from 'prop-types'
 import { Component } from 'react'
 
 export const backend = new DummyBackend('todos', [])
@@ -16,6 +17,9 @@ export class SessionManager {
 export const WithContext = (context, contextTypes) => {
   class WrappedWithContext extends Component {
     static childContextTypes = contextTypes
+    static propTypes = {
+      children: PropTypes.node
+    }
 
     getChildContext() {
       return context

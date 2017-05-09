@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Luggage, { DropboxBackend } from 'luggage'
-import SessionManager from './SessionManager'
+import SessionManager from 'luggage-session'
 
 class LuggageCollection extends Component {
   static propTypes = {
@@ -18,7 +18,7 @@ class LuggageCollection extends Component {
 
   static contextTypes = {
     luggage: PropTypes.shape({
-      credentials: PropTypes.object,
+      apiKey: PropTypes.object,
       redirectUrl: PropTypes.string
     })
   }
@@ -28,9 +28,9 @@ class LuggageCollection extends Component {
 
     const { SessionManager, Backend, name } = props
     const { luggage } = context
-    const { credentials, redirectUrl } = luggage
+    const { apiKey, redirectUrl } = luggage
 
-    const sessionManager = new SessionManager(credentials, redirectUrl)
+    const sessionManager = new SessionManager({apiKey, redirectUrl})
     const token = sessionManager.getToken()
 
     const store = new Luggage(new Backend(token))

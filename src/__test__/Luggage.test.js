@@ -1,3 +1,5 @@
+/* eslint no-undefined: 0 */
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import renderer from 'react-test-renderer'
@@ -23,32 +25,15 @@ describe('Luggage', () => {
     })
 
     it('creates context', () => {
-      const credentials = { API_KEY: 'someapikey' }
+      const apiKey = 'someapikey'
 
       renderer.create(
-        <Luggage credentials={credentials}>
+        <Luggage apiKey={apiKey}>
           <ContextChecker />
         </Luggage>
       )
 
-      expect(rootContext.luggage.credentials).toEqual(credentials)
-    })
-
-    it('sets dropbox credentials', () => {
-      const credentials = {
-        API_KEY: 'somekeyhere'
-      }
-
-      renderer.create(
-        <Luggage
-          collection='todos'
-          credentials={credentials}
-        >
-          <ContextChecker />
-        </Luggage>
-      )
-
-      expect(rootContext.luggage.credentials).toEqual(credentials)
+      expect(rootContext.luggage.apiKey).toEqual(apiKey)
     })
   })
 })
