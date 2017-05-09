@@ -7,7 +7,8 @@ class Luggage extends Component {
       PropTypes.node,
       PropTypes.arrayOf(PropTypes.node)
     ]).isRequired,
-    credentials: PropTypes.object
+    credentials: PropTypes.object,
+    redirectUrl: PropTypes.string
   }
 
   static childContextTypes = {
@@ -15,10 +16,10 @@ class Luggage extends Component {
   }
 
   getChildContext() {
-    const { credentials } = this.props
+    const { credentials, redirectUrl } = this.props
 
     return {
-      luggage: { credentials }
+      luggage: { credentials, redirectUrl }
     }
   }
 
