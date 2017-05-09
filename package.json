@@ -42,7 +42,6 @@
     "eslint-plugin-react": "^6.10",
     "jest": "^19.0.2",
     "luggage": "luggagejs/luggage#2.1.1",
-    "luggage-session": "luggagejs/luggage-session#0.1.2",
     "react": "^15",
     "react-test-renderer": "^15.4.2",
     "webpack": "^2"
@@ -53,6 +52,7 @@
   },
   "dependencies": {
     "prop-types": "^15.5.8",
-    "dropbox": "^2.5.2"
+    "dropbox": "^2.5.2",
+    "luggage-session": "luggagejs/luggage-session#0.1.2"
   }
 }
