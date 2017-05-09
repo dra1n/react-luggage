@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Luggage, { DropboxBackend } from 'luggage'
-import SessionManager from 'luggage-session'
+import LuggageSession from 'luggage-session'
 
 class LuggageCollection extends Component {
   static propTypes = {
@@ -12,13 +12,13 @@ class LuggageCollection extends Component {
   }
 
   static defaultProps = {
-    SessionManager: SessionManager,
+    SessionManager: LuggageSession,
     Backend: DropboxBackend
   }
 
   static contextTypes = {
     luggage: PropTypes.shape({
-      apiKey: PropTypes.object,
+      apiKey: PropTypes.string,
       redirectUrl: PropTypes.string
     })
   }
