@@ -53,6 +53,6 @@
   "dependencies": {
     "prop-types": "^15.5.8",
     "dropbox": "^2.5.2",
-    "luggage-session": "luggagejs/luggage-session#0.1.2"
+    "luggage-session": "luggagejs/luggage-session#0.1.3"
   }
 }
