@@ -1,4 +1,5 @@
 # react-luggage
+[![build status](https://img.shields.io/travis/luggagejs/react-luggage/master.svg?style=flat-square)](https://travis-ci.org/luggagejs/react-luggage)
 
 React components for Luggage.js
 
